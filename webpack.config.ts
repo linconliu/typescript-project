@@ -43,14 +43,14 @@ const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'My project',
-      template: 'src/index.html'
+      template: 'index.html'
     }),
     new MiniCssExtractplugin({
       filename: 'bundle.css'
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/img', to: 'img' }
+        { from: 'assets/img', to: 'img' }
       ]
     })
   ],
