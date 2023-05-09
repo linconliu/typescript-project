@@ -8,18 +8,21 @@ import TerserPlugin from 'terser-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
 const config: Configuration = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   module: {
     rules: [
       {
-        test: /\.(ts|js)?$/,
+        test: /\.(js|jx)?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-typescript"],
-          },
+          loader: "babel-loader"
         },
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: {
+          loader: "ts-loader"
+        }
       },
       {
         test: /\.css$/,
@@ -28,7 +31,7 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".*",".js",".jsx",".ts",".tsx"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -43,7 +46,7 @@ const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'My project',
-      template: 'index.html'
+      template: 'public/index.html'
     }),
     new MiniCssExtractplugin({
       filename: 'bundle.css'
